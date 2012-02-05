@@ -4,6 +4,8 @@ Mongoid::UPK generates more unique `_id` by using UUID.
 
 UPK stands for "unique primary key" or "uuid primary key".
 
+
+
 ## Install
 
 ```bash
@@ -16,8 +18,12 @@ gem install mongoid_upk
 gem "mongoid_upk"
 ```
 
+
+
 ## Usage
 
+**Basic**
+
 ```ruby
 class MyModel
   include Mongoid::Document
@@ -25,19 +31,18 @@ class MyModel
 end
 ```
 
-Will automatically use `UUID` ([uuid gem](https://github.com/assaf/uuid) by assaf), `:compact` mode per default.
-
-**Explicit definition**
+or:
 
 ```ruby
 class MyModel
   include Mongoid::Document
   include Mongoid::UPK
-  uuid_pk
+  uuid_pk # you can leave this out, because it's the default generator
 end
 ```
 
-Same as above.
+
+Will use `UUID` ([uuid gem](https://github.com/assaf/uuid) by assaf), `:compact` mode per default.
 
 **Pretty UUID**
 
@@ -65,9 +70,28 @@ end
 Very long `_id` with both BSON::ObjectId **and** UUID.
 (Example: `4f2e55a2ee911332c4000001-95faf560320f012f315510e6baa29f2c`)
 
+**Own pk generator**
+
+```ruby
+class MyModel
+  include Mongoid::Document
+  include Mongoid::UPK
+  unique_pk do
+    # code goes here
+    # result must be a string
+    # example:
+    Digest::MD5.hexdigest(Time.now.to_f.to_s)
+  end
+end
+```
+
+Example is self-describing.
+
+
+
 ## Motivation
 
-While writing very fast to MongoDB it is possible to take an BSON::ObjectId twice.
+While writing very fast to MongoDB it is possible to take a BSON::ObjectId twice.
 This will lead to big troubles because you never know which document will be returned.
 
 This gem utilizes the `key` method and overwrites the automatically given default id with the choosen generator on save.
@@ -76,6 +100,8 @@ So the real id can be read first after a successful save (I don't want to hack d
 UUID is in most cases more reliable, especially if the app instances are set up correctly (and/or running on different machines).
 
 Read more about the [UUID gem and how to set up your project (e.g. using unicorn or other threaded webservers)](https://github.com/assaf/uuid).
+
+
 
 ## License
 
