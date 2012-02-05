@@ -5,17 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = "mongoid_upk"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Grabo"]
   s.date = "2012-02-05"
   s.description = "Mongoid::UPK generates more unique `_id` by using UUID."
   s.email = "chris@dinarrr.com"
+  s.extra_rdoc_files = [
+    "LICENSE",
+    "README.md"
+  ]
   s.files = [
     ".rvmrc",
     "Gemfile",
     "Gemfile.lock",
+    "LICENSE",
+    "README.md",
     "Rakefile",
     "lib/mongoid_upk.rb",
     "lib/mongoid_upk/version.rb",
@@ -68,4 +74,3 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<pry-doc>, [">= 0"])
   end
 end
-
