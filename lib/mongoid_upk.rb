@@ -42,6 +42,16 @@ module Mongoid
         end
       end
 
+      def unique_pk
+        if block_given?
+          key :_id do |origin_bson_id|
+            yield
+          end
+        else
+          raise ArgumentError, "No block provided!"
+        end
+      end
+
     end
 
   end
