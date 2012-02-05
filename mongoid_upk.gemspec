@@ -13,7 +13,15 @@ Gem::Specification.new do |s|
   s.description = "Mongoid::UPK generates more unique `_id` by using UUID."
   s.email = "chris@dinarrr.com"
   s.files = [
-    "mongoid_upk.gemspec"
+    ".rvmrc",
+    "Gemfile",
+    "Gemfile.lock",
+    "Rakefile",
+    "lib/mongoid_upk.rb",
+    "lib/mongoid_upk/version.rb",
+    "mongoid_upk.gemspec",
+    "spec/mongoid_upk_spec.rb",
+    "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/asaaki/mongoid_upk"
   s.licenses = ["MIT"]
