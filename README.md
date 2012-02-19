@@ -1,4 +1,4 @@
-# Mongoid::UPK
+# Mongoid::UPK ![build status](http://travis-ci.org/asaaki/mongoid_upk.png)
 
 Mongoid::UPK generates more unique `_id` by using UUID.
 
